@@ -1,0 +1,53 @@
+<!--AngularJS Introducción
+AngularJS es un marco de JavaScript . Se puede añadir a una página HTML con una etiqueta <script>.
+
+AngularJS extiende atributos HTML con las Directivas , y se une a los datos HTML con expresiones .
+
+AngularJS es un marco de JavaScript
+AngularJS es un marco de JavaScript. Es una librería escrita en JavaScript.
+
+AngularJS se distribuye como un archivo JavaScript, y se puede agregar a una página web con una etiqueta de script:
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+Extiende AngularJS HTML
+AngularJS extiende HTML con NG-directivas .
+
+El ng aplicación Directiva define una aplicación AngularJS.
+
+El ng-modelo de directiva se une el valor de los controles HTML (entrada, seleccionar, área de texto) para datos de aplicación.
+
+El ng-bind directiva une datos de la aplicación a la vista HTML.
+
+Ejemplo AngularJS-->
+
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="">
+
+<p>Input something in the input box:</p>
+<p>Name: <input type="text" ng-model="name"></p>
+<p ng-bind="name"></p>
+
+</div>
+
+<!-- Puede utilizar datos ng- , en lugar de ng- , si desea hacer su página HTML válido. -->
+<div data-ng-app="" data-ng-init="firstName='John'">
+
+<p>The name is <span data-ng-bind="firstName"></span></p>
+
+</div>
+
+</body>
+</html>
+
+<!-- Ejemplo explicó:
+
+AngularJS se inicia automáticamente cuando la página web se ha cargado.
+
+El ng aplicación directiva indica AngularJS que el elemento <div> es el "dueño" de un AngularJS aplicación .
+
+El ng-modelo de directiva se une el valor del campo de entrada para la variable de aplicación nombre .
+
+El ng-bind directiva se une el contenido del elemento <p> a la variable de aplicación nombre . -->

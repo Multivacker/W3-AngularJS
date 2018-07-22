@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+  <h1>AngularJS Events</h1>
+  <p>AngularJS has its own HTML events directives.</p>
+  <h3>AngularJS Events</h3>
+  <p>You can add AngularJS event listeners to your HTML elements by using one or more of these directives:</p>
+
+  <ul>
+    <li>ng-blur</li>
+    <li>ng-change</li>
+    <li>ng-click</li>
+    <li>ng-copy</li>
+    <li>ng-cut</li>
+    <li>ng-dblclick</li>
+    <li>ng-focus</li>
+    <li>ng-keydown</li>
+    <li>ng-keypress</li>
+    <li>ng-keyup</li>
+    <li>ng-mousedown</li>
+    <li>ng-mouseenter</li>
+    <li>ng-mouseleave</li>
+    <li>ng-mousemove</li>
+    <li>ng-mouseover</li>
+    <li>ng-mouseup</li>
+    <li>ng-paste</li>
+  </ul>
+  <br>
+  <p>The event directives allows us to run AngularJS functions at certain user events.</p>
+  <p>An AngularJS event will not overwrite an HTML event, both events will be executed.</p><br>
+  <br>
+  <h1>Mouse Events</h1>
+  <p>Mouse events occur when the cursor moves over an element, in this order:</p>
+  <br>
+  <ol>
+    <li>ng-mouseover</li>
+    <li>ng-mouseenter</li>
+    <li>ng-mousemove</li>
+    <li>ng-mouseleave</li>
+  </ol>
+  <br>
+  <p>Or when a mouse button is clicked on an element, in this order:</p>
+  <ol>
+    <li>ng-mousedown</li>
+    <li>ng-mouseup</li>
+    <li>ng-click</li>
+  </ol>
+  <br>
+  <p>You can add mouse events on any HTML element.</p>
+  <br>
+  <h3>Example</h3>
+  <br>
+  <p>Increase the count variable when the mouse moves over the H1 element:</p>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+<h1 ng-mousemove="count = count + 1">Mouse Over Me!</h1>
+
+<h2>{{ count }}</h2>
+
+<h1>The ng-click Directive</h1>
+<p>The ng-click directive defines AngularJS code that will be executed when the element is being clicked.</p>
+<br>
+<h3>Example</h3>
+<button ng-click="count = count + 1">Click me!</button>
+
+<p>{{ count }}</p>
+
+<p>You can also refer to a function:</p>
+<!--<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.count = 0;
+    $scope.myFunction = function() {
+        $scope.count++;
+    }
+});
+</script>-->
+<h3>Example</h3>
+<button ng-click="count = count + 1">Click me!</button>
+
+<p>{{ count }}</p>
+
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.count = 0;
+});
+</script>
+
+</body>
+</html>

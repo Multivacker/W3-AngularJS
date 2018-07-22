@@ -1,0 +1,83 @@
+<!-- The Data Source as an Object
+In the previous examples the data source was an array, but we can also use an object.
+
+Assume you have an object with key-value pairs:
+
+$scope.cars = {
+    car01 : "Ford",
+    car02 : "Fiat",
+    car03 : "Volvo"
+};
+The expression in the ng-options attribute is a bit different for objects:
+
+Example
+Using an object as the data source, x represents the key, and y represents the value: -->
+
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="myAppBrand" ng-controller="myCtrlBrand">
+
+<p>Select a car:</p>
+
+<select ng-model="selectedCarbrand" ng-options="x for (x, y) in carsbrand">
+</select>
+
+<h1>You selected: {{selectedCarbrand.brand}}</h1>
+
+<p>This example demonstrates the use of an object as the data source when creating a dropdown list.</p>
+
+<p>The selected value will always be the value in a key-value pair.
+<br>
+The value in a key-value pair can also be an object:
+<br><br>
+Example
+<br>
+The selected value will still be the value in a key-value pair, only this time it is an object:</p>
+<br><br>
+
+<p>Select a car:</p>
+
+<select ng-model="selectedCarbrand" ng-options="x for (x, y) in carsbrand">
+</select>
+
+<h1>You selected: {{selectedCarbrand.brand}}</h1>
+<h2>Model: {{selectedCarbrand.model}}</h2>
+<h3>Color: {{selectedCarbrand.color}}</h3>
+
+<p>Note that the selected value represents an object.</p>
+
+<br><br>
+
+<!-- The options in the dropdown list does not have to be the key in a key-value pair, it can also be the value, or a property of the value object:
+
+Example
+<select ng-model="selectedCar" ng-options="y.brand for (x, y) in cars">
+</select> -->
+
+</div>
+
+
+
+
+</div>
+
+<script>
+var app = angular.module('myAppBrand', []);
+app.controller('myCtrlBrand', function($scope) {
+
+    $scope.carsbrand = {
+        carmodel01 : {brand : "Ford", model : "Mustang", color : "red"},
+        carmodel02 : {brand : "Fiat", model : "500", color : "white"},
+        carmodel03 : {brand : "Volvo", model : "XC90", color : "black"}
+    }
+
+});
+
+</script>
+
+
+</body>
+</html>

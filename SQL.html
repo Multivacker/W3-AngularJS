@@ -1,0 +1,158 @@
+<!-- AngularJS SQL
+AngularJS is perfect for displaying data from a Database. Just make sure the data is in JSON format.
+
+Fetching Data From a PHP Server Running MySQL
+AngularJS Example -->
+
+<!DOCTYPE html>
+<html >
+<style>
+table, th , td  {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+table tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="customersCtrl">
+
+<table>
+  <tr ng-repeat="x in names">
+    <td>{{ x.Name }}</td>
+    <td>{{ x.Country }}</td>
+  </tr>
+</table>
+
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('customersCtrl', function($scope, $http) {
+   $http.get("customers_mysql.php")
+   .then(function (response) {$scope.names = response.data.records;});
+});
+</script>
+
+<p>Server Code Examples
+  <br>
+The following section is a listing of the server code used to fetch SQL data.
+<br><br>
+Using PHP and MySQL. Returning <br>
+Using PHP and MS Access. Returning JSON.<br>
+Using ASP.NET, VB, and MS Access. Returning JSON.<br>
+Using ASP.NET, Razor, and SQL Lite. Returning JSON.<br>
+Cross-Site HTTP Requests<br><br>
+Requests for data from a different server (than the requesting page), are called cross-site HTTP requests.
+<br>
+Cross-site requests are common on the web. Many pages load CSS, images, and scripts from different servers.
+<br>
+In modern browsers, cross-site HTTP requests from scripts are restricted to same site for security reasons.
+<br>
+The following line, in our PHP examples, has been added to allow cross-site access.
+<br>
+header("Access-Control-Allow-Origin: *");<br>
+1. Server Code PHP and MySQL<br>
+<?php
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+<br>
+$conn = new mysqli("myServer", "myUser", "myPassword", "Northwind");
+<br>
+$result = $conn->query("SELECT CompanyName, City, Country FROM Customers");
+<br>
+$outp = "";<br>
+while($rs = $result->fetch_array(MYSQLI_ASSOC)) {<br>
+    if ($outp != "") {$outp .= ",";}<br>
+    $outp .= '{"Name":"'  . $rs["CompanyName"] . '",';<br>
+    $outp .= '"City":"'   . $rs["City"]        . '",';<br>
+    $outp .= '"Country":"'. $rs["Country"]     . '"}';<br>
+}<br>
+$outp ='{"records":['.$outp.']}';<br>
+$conn->close();<br>
+<br>
+echo($outp);<br>
+?><br>
+2. Server Code PHP and MS Access<br>
+<?php<br>
+header("Access-Control-Allow-Origin: *");<br>
+header("Content-Type: application/json; charset=ISO-8859-1");<br>
+<br>
+$conn = new COM("ADODB.Connection");<br>
+$conn->open("PROVIDER=Microsoft.Jet.OLEDB.4.0;Data<br> Source=Northwind.mdb");<br>
+<br>
+$rs = $conn->execute("SELECT CompanyName, City, Country FROM Customers");<br>
+
+$outp = "";<br>
+while (!$rs->EOF) {<br>
+    if ($outp != "") {$outp .= ",";}<br>
+    $outp .= '{"Name":"'  . $rs["CompanyName"] . '",';<br>
+    $outp .= '"City":"'   . $rs["City"]        . '",';<br>
+    $outp .= '"Country":"'. $rs["Country"]     . '"}';<br>
+    $rs->MoveNext();<br>
+}<br>
+$outp ='{"records":['.$outp.']}';<br>
+<br>
+$conn->close();<br>
+<br>
+echo ($outp);<br>
+?><br>
+3. Server Code ASP.NET, VB and MS Access<br>
+<%@ Import Namespace="System.IO"%><br>
+<%@ Import Namespace="System.Data"%><br>
+<%@ Import Namespace="System.Data.OleDb"%><br>
+<%<br>
+Response.AppendHeader("Access-Control-Allow-Origin", "*")<br>
+Response.AppendHeader("Content-type", "application/json")<br>
+Dim conn As OleDbConnection<br>
+Dim objAdapter As OleDbDataAdapter<br>
+Dim objTable As DataTable<br>
+Dim objRow As DataRow<br>
+Dim objDataSet As New DataSet()<br>
+Dim outp<br>
+Dim c<br>
+conn = New OledbConnection("Provider=Microsoft.Jet.OLEDB.4.0;data<br> source=Northwind.mdb")<br>
+objAdapter = New OledbDataAdapter("SELECT CompanyName, City, Country FROM Customers", conn)<br>
+objAdapter.Fill(objDataSet, "myTable")<br>
+objTable=objDataSet.Tables("myTable")<br>
+<br>
+outp = ""<br>
+c = chr(34)<br>
+for each x in objTable.Rows<br>
+if outp  "" then outp = outp & ","<br>
+outp = outp & "{" & c & "Name"    & c & ":" & c & x("CompanyName") & c & ","<br>
+outp = outp &       c & "City"    & c & ":" & c & x("City")        & c & ","<br>
+outp = outp &       c & "Country" & c & ":" & c & x("Country")     & c & "}"<br>
+next<br>
+<br>
+outp ="{" & c & "records" & c & ":[" & outp & "]}"<br>
+response.write(outp)<br>
+conn.close<br>
+%><br>
+4. Server Code ASP.NET, Razor C# and SQL Lite<br>
+@{<br>
+Response.AppendHeader("Access-Control-Allow-Origin", "*")<br>
+Response.AppendHeader("Content-type", "application/json")<br>
+var db = Database.Open("Northwind");<br>
+var query = db.Query("SELECT CompanyName, City, Country FROM<br> Customers");<br>
+var outp =""<br>
+var c = chr(34)<br>
+}<br>
+@foreach(var row in query){<br>
+if (outp != "") {outp = outp + ","}<br>
+outp = outp + "{" + c + "Name"    + c + ":" + c + @row.CompanyName + c + ","<br>
+outp = outp +       c + "City"    + c + ":" + c + @row.City        + c + ","<br>
+outp = outp +       c + "Country" + c + ":" + c + @row.Country     + c + "}"<br>
+}
+outp ="{" + c + "records" + c + ":[" + outp + "]}"<br>
+@outp</p>
+
+</body>
+</html>

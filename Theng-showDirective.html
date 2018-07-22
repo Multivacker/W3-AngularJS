@@ -1,0 +1,40 @@
+<!-- The ng-show Directive
+The ng-show directive shows or hides an HTML element.
+
+AngularJS Example -->
+
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+  <p>The ng-show Directive<br>
+  The ng-show directive shows or hides an HTML element.<br>
+  <br>
+  AngularJS Example<br></p>
+
+<div ng-app="">
+
+<p ng-show="true">I am visible.</p>
+
+<p ng-show="false">I am not visible.</p>
+
+</div>
+
+<p>The ng-show directive shows (or hides) an HTML element based on the value of ng-show.<br>
+<br>
+You can use any expression that evaluates to true or false:<br>
+<br>
+AngularJS Example</p><br>
+
+<div ng-app="" ng-init="hour=13">
+
+<p ng-show="hour > 12">I am visible.</p>
+<br><br>
+<p>
+  In the next chapter, there are more examples, using the click of a button to hide HTML elements.
+</p>
+
+</div>
+
+</body>
+</html>

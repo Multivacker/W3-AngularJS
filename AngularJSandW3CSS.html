@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body ng-app="myApp" ng-controller="userCtrl">
+
+<div class="w3-container">
+
+<h3>Users</h3>
+
+<table class="w3-table w3-bordered w3-striped">
+  <tr>
+    <th>Edit</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+  </tr>
+  <tr ng-repeat="user in users">
+    <td>
+      <button class="w3-btn w3-ripple" ng-click="editUser(user.id)">&#9998; Edit</button>
+    </td>
+    <td>{{ user.fName }}</td>
+    <td>{{ user.lName }}</td>
+  </tr>
+</table>
+<br>
+<button class="w3-btn w3-green w3-ripple" ng-click="editUser('new')">&#9998; Create New User</button>
+
+<form ng-hide="hideform">
+  <h3 ng-show="edit">Create New User:</h3>
+  <h3 ng-hide="edit">Edit User:</h3>
+    <label>First Name:</label>
+    <input class="w3-input w3-border" type="text" ng-model="fName" ng-disabled="!edit" placeholder="First Name">
+  <br>
+    <label>Last Name:</label>
+    <input class="w3-input w3-border" type="text" ng-model="lName" ng-disabled="!edit" placeholder="Last Name">
+  <br>
+    <label>Password:</label>
+    <input class="w3-input w3-border" type="password" ng-model="passw1" placeholder="Password">
+  <br>
+    <label>Repeat:</label>
+    <input class="w3-input w3-border" type="password" ng-model="passw2" placeholder="Repeat Password">
+ <br>
+<button class="w3-btn w3-green w3-ripple" ng-disabled="error || incomplete">&#10004; Save Changes</button>
+</form>
+<h2>Directives (Used Above) Explained</h2>
+<table class="w3-table w3-bordered w3-striped">
+  <tr>
+    <th>AngularJS Directive</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>body ng-app</td>
+    <td>Defines an application for the &lt;body&gt; element</td>
+  </tr>
+  <tr>
+    <td>body ng-controller</td>
+    <td>Defines a controller for the &lt;body&gt; element</td>
+  </tr>
+  <tr>
+    <td>tr ng-repeat</td>
+    <td>Repeats the &lt;tr&gt; element for each user in users</td>
+  </tr>
+  <tr>
+    <td>button ng-click</td>
+    <td>Invoke the function editUser() when the &lt;button&gt; element is clicked</td>
+  </tr>
+  <tr>
+    <td>h3 ng-show</td>
+    <td>Show the &lt;h3&gt;s element if edit = true</td>
+  </tr>
+  <tr>
+    <td>h3 ng-hide</td>
+    <td>Hide the form if hideform = true, and hide the &lt;h3&gt; element if edit = true</td>
+  </tr>
+  <tr>
+    <td>input ng-model</td>
+    <td>Bind the &lt;input&gt; element to the application</td>
+  </tr>
+  <tr>
+    <td>button ng-disabled</td>
+    <td>Disables the &lt;button&gt; element if error or incomplete = true</td>
+  </tr>
+</table>
+
+<h2>W3.CSS Classes Explained</h2>
+<table class="w3-table w3-bordered w3-striped">
+  <tr>
+    <th>Element</th>
+    <th>Class</th>
+    <th>Defines</th>
+  </tr>
+  <tr>
+    <td>div</td>
+    <td>w3-container</td>
+    <td>A content container</td>
+  </tr>
+  <tr>
+    <td>table</td>
+    <td>w3-table</td>
+    <td>A table</td>
+  </tr>
+  <tr>
+    <td>table</td>
+    <td>w3-bordered</td>
+    <td>A bordered table</td>
+  </tr>
+  <tr>
+    <td>table</td>
+    <td>w3-striped</td>
+    <td>A striped table</td>
+  </tr>
+  <tr>
+    <td>button</td>
+    <td>w3-btn</td>
+    <td>A button</td>
+  </tr>
+  <tr>
+    <td>button</td>
+    <td>w3-green</td>
+    <td>A green button</td>
+  </tr>
+  <tr>
+    <td>button</td>
+    <td>w3-ripple</td>
+    <td>A ripple effect when you click the button</td>
+  </tr>
+  <tr>
+    <td>input</td>
+    <td>w3-input</td>
+    <td>An input field</td>
+  </tr>
+  <tr>
+    <td>input</td>
+    <td>w3-border</td>
+    <td>A border on the input field</td>
+  </tr>
+
+</table>
+
+<h2>JavaScript Code Explained</h2>
+<table class="w3-table w3-bordered w3-striped">
+  <tr>
+    <th>Scope Properties</th>
+    <th>Used for</th>
+  </tr>
+  <tr>
+    <td>$scope.fName</td>
+    <td>Model variable (user first name)</td>
+  </tr>
+  <tr>
+    <td>$scope.lName</td>
+    <td>Model variable (user last name)</td>
+  </tr>
+  <tr>
+    <td>$scope.passw1</td>
+    <td>Model variable (user password 1)</td>
+  </tr>
+  <tr>
+    <td>$scope.passw2</td>
+    <td>Model variable (user password 2)</td>
+  </tr>
+  <tr>
+    <td>$scope.users</td>
+    <td>	Model variable (array of users)</td>
+  </tr>
+  <tr>
+    <td>$scope.edit</td>
+    <td>	Set to true when user clicks on 'Create user'..</td>
+  </tr>
+  <tr>
+    <td>$scope.hideform</td>
+    <td>Set to true when user clicks on 'Edit' or 'Create user'.</td>
+  </tr>
+  <tr>
+    <td>$scope.error</td>
+    <td>Set to true if passw1 not equal passw2</td>
+  </tr>
+  <tr>
+    <td>$scope.incomplete</td>
+    <td>Set to true if any field is empty (length = 0)</td>
+  </tr>
+  <tr>
+    <td>$scope.editUser</td>
+    <td>Sets model variables</td>
+  </tr>
+  <tr>
+    <td>$scope.$watch</td>
+    <td>Watches model variables</td>
+  </tr>
+  <tr>
+    <td>$scope.test</td>
+    <td>	Tests model variables for errors and incompleteness</td>
+  </tr>
+</table>
+
+
+</div>
+
+<script src= "myUsers.js"></script>
+
+</body>
+</html>

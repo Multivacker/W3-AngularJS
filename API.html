@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<style>
+table, th , td  {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+table tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+<h1>AngularJS API</h1>
+<p>API stands for Application Programming Interface.</p>
+<h3>AngularJS Global API</h3>
+<p>The AngularJS Global API is a set of global JavaScript functions for performing common tasks like:</p>
+<ul>
+  <li>Comparing objects</li>
+  <li>Iterating objects</li>
+  <li>Converting data</li>
+</ul>
+
+<p>The Global API functions are accessed using the angular object.</p>
+<br>
+<p>Below is a list of some common API functions:</p>
+
+<table>
+  <tr>
+    <th>API</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>angular.lowercase()</td>
+    <td>Converts a string to lowercase</td>
+  </tr>
+  <tr>
+    <td>angular.uppercase()</td>
+    <td>Converts a string to uppercase</td>
+  </tr>
+  <tr>
+    <td>angular.isString()</td>
+    <td>Returns true if the reference is a string</td>
+  </tr>
+  <tr>
+    <td>angular.isNumber()</td>
+    <td>Returns true if the reference is a number</td>
+  </tr>
+</table>
+<h2>angular.lowercase()</h2>
+<h3>Example</h3>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+<p>{{ x1 }}</p>
+<p>{{ x2 }}</p>
+
+<h2>angular.uppercase()</h2>
+<h3>Example</h3>
+
+<p>{{ x3 }}</p>
+<p>{{ x4 }}</p>
+
+<h2>angular.isNumber()</h2>
+<h3>Example</h3>
+<p>{{ x5 }}</p>
+<p>{{ x6 }}</p>
+
+</div>
+
+
+
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.x1 = "NAHUEL";
+    $scope.x2 = angular.lowercase($scope.x1);
+    $scope.x3 = "Nahuel";
+    $scope.x4 = angular.uppercase($scope.x3);
+    $scope.x5 = 32;
+    $scope.x6 = angular.isNumber($scope.x5);
+});
+</script>
+
+
+
+</body>
+</html>

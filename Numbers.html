@@ -1,0 +1,24 @@
+<!-- AngularJS Numbers
+AngularJS numbers are like JavaScript numbers: -->
+
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="" ng-init="quantity=1;cost=5">
+<p>Total in dollar: {{ quantity * cost }}</p>
+</div>
+
+<p>Same example using ng-bind:</p>
+
+<div ng-app="" ng-init="quantity=1;cost=5">
+
+<p>Total in dollar: <span ng-bind="quantity * cost"></span></p>
+
+<p>Using ng-init is not very common. You will learn a better way to initialize data in the chapter about controllers.</p>
+
+</div>
+
+</body>
+</html>

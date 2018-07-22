@@ -1,0 +1,40 @@
+<!-- Animations Using CSS
+We can use CSS transitions or CSS animations to animate HTML elements. This tutorial will show you both.
+
+To learn more about CSS Animation, study our CSS Transition Tutorial and our CSS Animation Tutorial.
+
+CSS Transitions
+CSS transitions allows you to change CSS property values smoothly, from one value to another, over a given duration:
+
+Example:
+When the DIV element gets the .ng-hide class, the transition will take 0.5 seconds, and the height will smoothly change from 100px to 0: -->
+
+<!DOCTYPE html>
+<html>
+<style>
+div {
+  transition: all linear 0.5s;
+  background-color: lightblue;
+  height: 100px;
+}
+
+.ng-hide {
+  height: 0;
+}
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+
+<body ng-app="myApp">
+
+<h1>Hide the DIV: <input type="checkbox" ng-model="myCheck"></h1>
+
+<div ng-hide="myCheck"></div>
+
+<script>
+var app = angular.module('myApp', ['ngAnimate']);
+</script>
+
+</body>
+</html>

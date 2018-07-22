@@ -1,0 +1,23 @@
+<!-- Expresiones AngularJS
+AngularJS expresiones se escriben entre llaves dobles: {{}} expresión .
+
+AngularJS serán los datos de "salida" exactamente donde la expresión se escribe: -->
+
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="">
+<p>My first expression: {{ 5 + 5 }}</p>
+</div>
+
+<!-- AngularJS expresiones se unen los datos AngularJS a HTML de la misma manera como el ng-bind Directiva. -->
+
+<div ng-app="">
+  <p>Name: <input type="text" ng-model="name"></p>
+  <p>{{name}}</p>
+</div>
+
+</body>
+</html>

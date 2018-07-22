@@ -1,0 +1,187 @@
+<!-- AngularJS Application
+It is time to create a real AngularJS Application.
+
+Make a Shopping List
+Lets use some of the AngularJS features to make a shopping list, where you can add or remove items: -->
+
+<!-- Application Explained
+Step 1. Getting Started:
+Start by making an application called myShoppingList, and add a controller named myCtrl to it.
+
+The controller adds an array named products to the current $scope.
+
+In the HTML, we use the ng-repeat directive to display a list using the items in the array.
+
+Example
+So far we have made an HTML list based on the items of an array: -->
+
+<!-- <script>
+var app = angular.module("myShoppingList", []);
+app.controller("myCtrl", function($scope) {
+    $scope.products = ["Milk", "Bread", "Cheese"];
+});
+</script>
+
+<div ng-app="myShoppingList" ng-controller="myCtrl">
+    <ul>
+        <li ng-repeat="x in products">{{x}}</li>
+    </ul>
+</div>
+Step 2. Adding Items:
+In the HTML, add a text field, and bind it to the application with the ng-model directive.
+
+In the controller, make a function named addItem, and use the value of the addMe input field to add an item to the products array.
+
+Add a button, and give it an ng-click directive that will run the addItem function when the button is clicked.
+
+Example
+Now we can add items to our shopping list:
+
+<script>
+var app = angular.module("myShoppingList", []);
+app.controller("myCtrl", function($scope) {
+    $scope.products = ["Milk", "Bread", "Cheese"];
+    $scope.addItem = function () {
+        $scope.products.push($scope.addMe);
+    }
+});
+</script>
+
+<div ng-app="myShoppingList" ng-controller="myCtrl">
+    <ul>
+        <li ng-repeat="x in products">{{x}}</li>
+    </ul>
+    <input ng-model="addMe">
+    <button ng-click="addItem()">Add</button>
+</div>
+Step 3. Removing Items:
+We also want to be able to remove items from the shopping list.
+
+In the controller, make a function named removeItem, which takes the index of the item you want to remove, as a parameter.
+
+In the HTML, make a <span> element for each item, and give them an ng-click directive which calls the removeItem function with the current $index.
+
+Example
+Now we can remove items from our shopping list:
+
+<script>
+var app = angular.module("myShoppingList", []);
+app.controller("myCtrl", function($scope) {
+    $scope.products = ["Milk", "Bread", "Cheese"];
+    $scope.addItem = function () {
+        $scope.products.push($scope.addMe);
+    }
+    $scope.removeItem = function (x) {
+        $scope.products.splice(x, 1);
+    }
+});
+</script>
+
+<div ng-app="myShoppingList" ng-controller="myCtrl">
+    <ul>
+        <li ng-repeat="x in products">
+            {{x}}
+            <span ng-click="removeItem($index)">&times;</span>
+        </li>
+    </ul>
+    <input ng-model="addMe">
+    <button ng-click="addItem()">Add</button>
+</div>
+Step 4. Error Handling:
+The application has some errors, like if you try to add the same item twice, the application crashes. Also, it should not be allowed to add empty items.
+
+We will fix that by checking the value before adding new items.
+
+In the HTML, we will add a container for error messages, and write an error message when someone tries to add an existing item.
+
+Example
+A shopping list, with the possibility to write error messages:
+
+<script>
+var app = angular.module("myShoppingList", []);
+app.controller("myCtrl", function($scope) {
+    $scope.products = ["Milk", "Bread", "Cheese"];
+    $scope.addItem = function () {
+        $scope.errortext = "";
+        if (!$scope.addMe) {return;}
+        if ($scope.products.indexOf($scope.addMe) == -1) {
+            $scope.products.push($scope.addMe);
+        } else {
+            $scope.errortext = "The item is already in your shopping list.";
+        }
+    }
+    $scope.removeItem = function (x) {
+        $scope.errortext = "";
+        $scope.products.splice(x, 1);
+    }
+});
+</script>
+
+<div ng-app="myShoppingList" ng-controller="myCtrl">
+    <ul>
+        <li ng-repeat="x in products">
+            {{x}}
+            <span ng-click="removeItem($index)">&times;</span>
+        </li>
+    </ul>
+    <input ng-model="addMe">
+    <button ng-click="addItem()">Add</button>
+    <p>{{errortext}}</p>
+</div>
+Step 5. Design:
+The application works, but could use a better design. We use the W3.CSS stylesheet to style our application.
+
+Add the W3.CSS stylesheet, and include the proper classes throughout the application, and the result will be the same as the shopping list at the top of this page.
+
+Example
+Style your application using the W3.CSS stylesheet:
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body>
+
+<script>
+var app = angular.module("myShoppingList", []);
+app.controller("myCtrl", function($scope) {
+    $scope.products = ["Milk", "Bread", "Cheese"];
+    $scope.addItem = function () {
+        $scope.errortext = "";
+        if (!$scope.addMe) {return;}
+        if ($scope.products.indexOf($scope.addMe) == -1) {
+            $scope.products.push($scope.addMe);
+        } else {
+            $scope.errortext = "The item is already in your shopping list.";
+        }
+    }
+    $scope.removeItem = function (x) {
+        $scope.errortext = "";
+        $scope.products.splice(x, 1);
+    }
+});
+</script>
+
+<div ng-app="myShoppingList" ng-cloak ng-controller="myCtrl" class="w3-card-2 w3-margin" style="max-width:400px;">
+  <header class="w3-container w3-light-grey w3-padding-16">
+    <h3>My Shopping List</h3>
+  </header>
+  <ul class="w3-ul">
+    <li ng-repeat="x in products" class="w3-padding-16">{{x}}<span ng-click="removeItem($index)" style="cursor:pointer;" class="w3-right w3-margin-right">×</span></li>
+  </ul>
+  <div class="w3-container w3-light-grey w3-padding-16">
+    <div class="w3-row w3-margin-top">
+      <div class="w3-col s10">
+        <input placeholder="Add shopping items here" ng-model="addMe" class="w3-input w3-border w3-padding">
+      </div>
+      <div class="w3-col s2">
+        <button ng-click="addItem()" class="w3-btn w3-padding w3-green">Add</button>
+      </div>
+    </div>
+    <p class="w3-text-red">{{errortext}}</p>
+  </div>
+</div>
+
+</body>
+</html>
